@@ -94,3 +94,7 @@ Try these exact phrases in the Playground UI to test the core workflow:
    ```
 
 ⚠ **NEVER push `.env` to GitHub. Your API key will be exposed publicly.**
+
+## Assets
+
+![Cover Banner](assets/cover_page_banner.png)

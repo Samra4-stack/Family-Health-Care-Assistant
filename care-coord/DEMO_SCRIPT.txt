@@ -1,0 +1,29 @@
+[0:00 — HOOK]
+Managing complex family health schedules, tracking daily medications, and coordinating medical appointments is a fragmented and overwhelming process. Family caregivers often struggle to keep everything organized safely while still maintaining control over critical health decisions.
+
+[0:20 — WHAT IT IS]
+To solve this, I built the Family Health Care Assistant. It's an intelligent agent from the "Agents for Good" track, designed to be a centralized, secure coordinator for managing a family's entire healthcare schedule.
+
+[0:40 — SHOW THE BANNER]
+(show assets/cover_page_banner.png)
+As you can see, the assistant automates prescription tracking and appointment scheduling with built-in human oversight and persistent memory.
+
+[1:00 — ARCHITECTURE]
+(show assets/architecture_diagram.png)
+Let's look at how it works under the hood. Everything starts at the security_checkpoint_node, which intercepts the input to scrub PII and block malicious injections. Once cleared, the input flows to the run_orchestrator_node. The orchestrator is the brain of the operation—it parses the intent and routes the request. For sensitive tasks like logging a new medication or scheduling an appointment, the orchestrator triggers a strict offline pattern to bypass the LLM entirely and stage the action for human approval. We also have an MCP Server running alongside it, which provides the tools needed to persist this data into a local JSON database. Finally, everything funnels to the final_response_node to render the output back to the user.
+
+[2:00 — LIVE DEMO]
+(switch to playground at localhost:18081)
+Let's see it in action. First, I'm going to type: "log prescription Amoxicillin 500mg daily for Sarah".
+Notice how it instantly stages the prescription and asks for my explicit approval. It says: "Please confirm this prescription... Reply YES to save it or NO to cancel."
+Because this is a critical medical action, it requires Human-In-The-Loop approval.
+Next, I'll type "yes" to approve it. 
+The orchestrator intercepts this, securely saves the prescription to our persistent tracker using our MCP tools, and replies "Approved! Prescription added."
+Finally, I'll type "health summary" to retrieve our records. 
+The agent reads our local datastore and instantly outputs a clean summary showing the active prescriptions and appointments we've saved.
+
+[3:00 — SECURITY & MCP]
+This entire process is strictly secured. The Security Checkpoint scrubs sensitive identifiers and logs an audit trail for every single interaction. Underneath it all, the MCP server acts as our resilient memory layer, ensuring that even if the app restarts, our family's critical health records are never lost.
+
+[3:30 — IMPACT / CLOSE]
+By combining automation with mandatory human oversight, the Family Health Care Assistant significantly reduces the cognitive load on caregivers, prevents missed medications, and improves family health outcomes safely and reliably. Thank you!

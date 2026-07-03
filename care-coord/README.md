@@ -98,3 +98,7 @@ Try these exact phrases in the Playground UI to test the core workflow:
 ## Assets
 
 ![Cover Banner](assets/cover_page_banner.png)
+
+## Demo Script
+
+[View the Presentation Script](DEMO_SCRIPT.txt)

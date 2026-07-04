@@ -1,3 +1,12 @@
+---
+title: Family Health Care Assistant
+emoji: 🏥
+colorFrom: blue
+colorTo: green
+sdk: docker
+pinned: false
+---
+
 # Care Coordination Agent
 
 Family health tracking & appointment scheduling assistant built with the Google ADK.
